@@ -1,0 +1,26 @@
+.container-link{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 80%;
+}
+.rifas-link{
+	background: #4D5DFA;
+  color: #fbfbfb;
+	padding: 15px;
+	border-radius: 15px;
+	box-shadow: -1px 3px 8px 1px #444242;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: small;
+	text-shadow: 1px 2px 3px #000;
+	margin-bottom: 25px;
+	margin-left: 15px;
+	width: 100px;
+	height: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

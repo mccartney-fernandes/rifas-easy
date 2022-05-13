@@ -1,0 +1,62 @@
+.container-rifa{
+	display: flex;
+	justify-content: center;
+  flex-wrap: wrap;
+	width: 100%;
+	margin-top: 50px;
+	overflow-y: scroll;
+	height: 83vh;
+	
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #bdbec1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.app-rifa {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 90px;
+	height: 90px;
+	margin: 10px;
+	border-radius: 15px;
+	font-size: calc(15px + 2vmin);	
+}
+
+.app-rifa span {
+	font-size: calc(10px + 1vmin);
+}
+
+.available {
+	background: #0a4c02;
+  color: #fff;
+	cursor: pointer;
+}
+
+.processing{
+	background: #bd7317;
+}
+
+.sold{
+	background: #f72c2c;
+	color: #fff;
+}
+

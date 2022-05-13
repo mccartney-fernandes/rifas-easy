@@ -1,0 +1,12 @@
+.btn-logout{
+	position: absolute;
+  top: 15px;
+  right: 15px;
+	border-radius: 100% !important;
+	height: 30px !important;
+	width: 30px !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: rgb(231, 117, 117);
+}

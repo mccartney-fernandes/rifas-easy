@@ -1,0 +1,23 @@
+.container{
+	width: 90%;
+	color: #ffff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.form-group {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;	
+}
+.form-group > input {
+	height: 45px;	
+	background: #343741;
+	border-radius: 15px;
+	border: none;
+	padding-left: 10px;
+	color: #ffff;
+	font-size: medium;
+}
