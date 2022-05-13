@@ -8,6 +8,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #fff;
+	color: rgb(219, 217, 217);
 	z-index: 1001;
+	cursor: pointer;
 }

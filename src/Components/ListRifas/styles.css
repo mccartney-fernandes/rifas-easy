@@ -3,9 +3,8 @@
 	justify-content: center;
   flex-wrap: wrap;
 	width: 100%;
-	margin-top: 50px;
 	overflow-y: scroll;
-	height: 83vh;
+	height: 85vh;
 	
 }
 
@@ -16,7 +15,7 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #bdbec1; 
+  background: #181a20; 
 }
  
 /* Handle */
@@ -26,7 +25,7 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #181a20; 
 }
 
 .app-rifa {
@@ -41,22 +40,23 @@
 	font-size: calc(15px + 2vmin);	
 }
 
-.app-rifa span {
-	font-size: calc(10px + 1vmin);
+.app-rifa > code {	
+	font-size: calc(25px + 2vmin);	
 }
 
 .available {
-	background: #0a4c02;
+	background: #1F222A;
   color: #fff;
 	cursor: pointer;
 }
 
 .processing{
-	background: #bd7317;
+	background: rgb(255 184 18 / 44%);
+	color: #fff;
 }
 
 .sold{
-	background: #f72c2c;
+	background: rgb(247 72 77 / 54%);
 	color: #fff;
 }
 

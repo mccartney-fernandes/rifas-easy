@@ -5,7 +5,6 @@ import ListRifas from '../../Components/ListRifas';
 import SalesRifaModal from '../../Components/SalesRifasModal';
 
 import { sales } from '../../Models/Rifa'
-import LogoutButton from '../../Components/LogoutButton';
 import BackButton from '../../Components/BackButton';
 
 function Rifas() {
@@ -85,7 +84,6 @@ function Rifas() {
 			
 			{ openModal ? <SalesRifaModal rifa={rifa} closeModal={closeModal} salesRifa={salesRifa} /> : '' }
 			<BackButton />
-			<LogoutButton />
 			{isRifasObjetcEmpty(rifas)}
     </>    
   );

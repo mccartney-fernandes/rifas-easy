@@ -6,6 +6,33 @@ Projeto pensado para facilitar as vendas de rifas.
 
 Esse projeto visa ajudar grupos de Jovens de Igrejas, que querem alcançar um objetivo (viagem para conferências, compras de camisetas ...)
 
-## Finalização
+## tecnology
 
-melhorando layout 
+- ReactJS
+- Firebase
+
+## Features
+
+### Administrador
+
+- Gera numeros das rifas,
+- Emite Relatório
+- Vende Rifas,
+- Slider do produto rifado
+
+#### Future
+
+- upload de imagens do produto rifado
+
+### Usuario Logado
+
+- Vende Rifas,
+- Slider do produto rifado
+
+### Usuario não Logado
+
+- Slider do Produto rifado
+
+#### Future
+
+- Visualizar Comprovante de compra de rifa, via token
