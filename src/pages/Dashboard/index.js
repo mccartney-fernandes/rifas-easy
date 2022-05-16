@@ -64,7 +64,7 @@ function Dashboard() {
 					isAdm ?
 					<Link
 							className="rifas-link"
-							to="/"
+							to="/repor"
 					>
 							<FaFile style={{fontSize: 20, marginRight: 5}} />
 							Relatório

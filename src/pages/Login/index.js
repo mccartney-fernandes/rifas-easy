@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { FiEye, FiEyeOff } from 'react-icons/fi'
 import { useAuth } from '../../context/auth'
 import './styles.css'
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [eyer, setEyer] = useState(true)
   const [error, setError] = useState({})
 
   const { Login } = useAuth();
@@ -50,6 +52,11 @@ function Login() {
     }
     
   }
+
+	function handleEyerPass(){
+		setEyer(!eyer)
+	}
+	
     return (
       <>        
         <form className='container' onSubmit={handleLogin}>  
@@ -60,7 +67,18 @@ function Login() {
             
           </div> 
           <div className='form-group'>
-            <input type="password" name='password' placeholder='Senha' onChange={handleInput} required /> 
+            <input 
+							type={eyer ? 'password' : 'text'} 
+							name='password' 
+							placeholder='Senha' 
+							onChange={handleInput} 
+							required 
+						/>
+						{ password && (eyer ? 
+														<FiEye className='eye-pass' onClick={handleEyerPass} /> 
+														: 
+														<FiEyeOff className='eye-pass' onClick={handleEyerPass} />)
+						}
             { error.label === 'password' ? <span style={{ color: 'red', fontSize: '10pt', textAlign: 'center', width: '100%' }}>{error.text}</span> : '' } 
           </div>
             <button className='btn btn-block btn-primary' type='submit'>Entrar</button> 

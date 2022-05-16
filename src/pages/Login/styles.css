@@ -1,3 +1,25 @@
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+	.container {
+		width: 90% !important;
+	}
+ }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+	.container {
+		width: 50% !important;
+	}
+ }
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+	.container {
+		width: 30% !important;
+	}
+ }
+
 .container{
 	width: 90%;
 	color: #ffff;
@@ -6,11 +28,13 @@
 	justify-content: center;
 	align-items: center;
 }
+
 .form-group {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 20px;	
+	margin-bottom: 20px;
+	position: relative;	
 }
 .form-group > input {
 	height: 45px;	
@@ -20,4 +44,11 @@
 	padding-left: 10px;
 	color: #ffff;
 	font-size: medium;
+}
+
+.eye-pass{
+	position: absolute;
+	right: 14px;
+	top: 13px;
+	cursor: pointer;
 }

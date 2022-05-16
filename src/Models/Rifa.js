@@ -1,22 +1,11 @@
 import app from '../services/firebaseConfig'
-// import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore'
-import { getDatabase, ref, push, update } from 'firebase/database'
+import { getDatabase, ref, push, update, child, get } from 'firebase/database'
 
-// const db = getFirestore(app);
-const dbRealTime = getDatabase(app)
+const db = getDatabase(app)
 
-
-// export async function index() {
-//     const citySnapshot = await getDocs(collection(db, 'rifas'))
-//     const rifasList = citySnapshot.docs.map(doc => {
-// 												console.log(doc.id)
-// 												return doc.data()									
-// 											})
-//     return rifasList
-// }
 
 export async function sales(data) {	
-    await update(ref(dbRealTime, `rifas/${data.id}`), { 
+    await update(ref(db, `rifas/${data.id}`), { 
 			number: data.number, 
 			buyer: data.buyer,
 			phone: data.phone, 
@@ -28,7 +17,7 @@ export async function sales(data) {
 export async function generateRifa({ initial, final }) {   
     try {
         for(let i=parseInt(initial);i<=parseInt(final);i++){
-            await push(ref(dbRealTime, 'rifas'), 
+            await push(ref(db, 'rifas'), 
                             { number: i, buyer: '', phone: '', salesman: '', status: 'available'}
                         )
         }
@@ -39,17 +28,17 @@ export async function generateRifa({ initial, final }) {
     }
 }
 
-// export async function generateRifa({ initial, final }) {
-   
-// 	try {
-// 			for(let i=parseInt(initial);i<=parseInt(final);i++){
-// 					await addDoc(collection(db, 'rifas'), 
-// 													{ number: i, buyer: '', salesman: '', status: false}
-// 											)
-// 			}
+export async function getReportRifas(args) {
+	console.log(args)
+	const dbRef = ref(db)
+	const report = await get(child(dbRef, `rifas`))
+	const ArrayRifas = Object.keys(report.val()).map( key => ({ ...report.val()[key], id: key }))
+	
+	if(args === 'sold'){
+		return ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'sold')
+	}		
 
-// 			return { data: `Foram geradas de ${initial} a ${final} de Rifas.`, status: 200 }
-// 	} catch (error) {
-// 			return { data: 'error', status: 400 }
-// 	}
-// }
+	if(args === 'available'){		
+		return ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'available')
+	}
+}
