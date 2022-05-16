@@ -18,6 +18,8 @@ Esse projeto visa ajudar grupos de Jovens de Igrejas, que querem alcançar um ob
 - Gera numeros das rifas,
 - Emite Relatório
 - Vende Rifas,
+- Relatório de Rifas Vendidas (numero da rifa, nome do comprador, telefone do comprador, nome do vendedor)
+- Relatório de Rifas Disponiveis
 - Slider do produto rifado
 
 #### Future
@@ -28,6 +30,10 @@ Esse projeto visa ajudar grupos de Jovens de Igrejas, que querem alcançar um ob
 
 - Vende Rifas,
 - Slider do produto rifado
+
+#### Future
+
+- Relatório de Rifas Vendidas (numero da rifa, nome do comprador, telefone do comprador)
 
 ### Usuario não Logado
 
