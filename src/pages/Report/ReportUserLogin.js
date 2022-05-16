@@ -1,35 +1,20 @@
-import { useState, useCallback, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import BackButton from '../../Components/BackButton'
 import TableReport from './TableReport'
 import { IoTicketSharp } from 'react-icons/io5'
 import { useAuth } from '../../context/auth'
 import './styles.css';
 
-import { userLevel } from '../../Models/User'
 import { getReportRifas } from '../../Models/Rifa'
 
-function Report() {
+function ReportUserLogin() {
 	const [qtdAvailable, setQtdAvailable] = useState({})
 	const [qtdSold, setQtdSold] = useState([])
-	const navigate = useNavigate()
+
 	const { user } = useAuth()
-
-	const authUserAdm = useCallback(async () => {
-		const response = await userLevel(user.uid)
-
-		if(response.status === 400)
-			navigate("/rifas")
-
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	},[])
 	
-	useEffect(() => {
-		authUserAdm()
-	}, [authUserAdm])
-
 	async function getReport(args) {
-		const response = await getReportRifas(args, 'adm', user.uid)
+		const response = await getReportRifas(args, 'cli', user.email)
 		if(args === 'available'){
 			setQtdSold([])
 			setQtdAvailable(response)
@@ -79,4 +64,4 @@ function Report() {
 	);
 }
 
-export default Report;
+export default ReportUserLogin;

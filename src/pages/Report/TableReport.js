@@ -11,13 +11,13 @@ function Report({ reports }) {
 	}
 	return (
 
-		<table class="table table-action">  
+		<table className="table table-action">  
 				<thead>
 					<tr>
-						<th class="t-small">Numero</th>
-						<th class="t-medium">Comprador</th>
-						<th class="t-medium">Telefone</th>
-						<th class="t-medium">Vendedor</th>
+						<th className="t-small">Numero</th>
+						<th className="t-medium">Comprador</th>
+						<th className="t-medium">Telefone</th>
+						<th className="t-medium">Vendedor</th>
 					</tr>
 				</thead>
 				

@@ -3,7 +3,6 @@ import { getDatabase, ref, push, update, child, get } from 'firebase/database'
 
 const db = getDatabase(app)
 
-
 export async function sales(data) {	
     await update(ref(db, `rifas/${data.id}`), { 
 			number: data.number, 
@@ -28,17 +27,42 @@ export async function generateRifa({ initial, final }) {
     }
 }
 
-export async function getReportRifas(args) {
-	console.log(args)
+export async function getReportRifas(args, level, email) {
+	
 	const dbRef = ref(db)
-	const report = await get(child(dbRef, `rifas`))
+	let report = await get(child(dbRef, `rifas`))
+
 	const ArrayRifas = Object.keys(report.val()).map( key => ({ ...report.val()[key], id: key }))
+
 	
 	if(args === 'sold'){
-		return ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'sold')
+		if(level === 'adm') {
+			console.log(args, level, email)
+			return ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'sold')
+		}
+
+		if(level === 'cli')	{
+			const reps = ArrayRifas.sort((a, b) => a.number - b.number)
+												.filter( fic => fic.status === 'sold')
+												.filter( fi => fi.salesman === email)
+			return reps
+		}			
+			
 	}		
 
 	if(args === 'available'){		
-		return ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'available')
+		if(level === 'adm') {
+			return {
+				available: ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'available').length,
+				sold: ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'sold').length
+			}
+		}
+
+		if(level === 'cli') {
+			return {
+				available: ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'available').length,
+				sold: ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'sold').filter( fi => fi.salesman === email ).length
+			}
+		}
 	}
 }

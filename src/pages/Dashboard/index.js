@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { FaFile, FaImage } from 'react-icons/fa'
 import { MdOutlineAttachMoney } from 'react-icons/md'
+import { HiDocumentReport } from 'react-icons/hi'
 import { ImListNumbered } from 'react-icons/im'
 import './styles.css'
 
@@ -49,6 +50,12 @@ function Dashboard() {
 				>
 						<FaImage style={{fontSize: 20, marginRight: 5}} />Imagens
 				</Link>
+				<Link
+						className="rifas-link"
+						to="/repor-user-login"
+				>
+						<FaFile style={{fontSize: 20, marginRight: 5}} />Relatório
+				</Link>
 				{
 					isAdm ?
 					<Link
@@ -65,9 +72,10 @@ function Dashboard() {
 					<Link
 							className="rifas-link"
 							to="/repor"
+							style={{ color: '#181A20', background: '#f89406'}}
 					>
-							<FaFile style={{fontSize: 20, marginRight: 5}} />
-							Relatório
+							<HiDocumentReport style={{fontSize: 40, marginRight: 5, color: '#181A20'}} />
+							Relatório adm
 					</Link>
 					:
 					''

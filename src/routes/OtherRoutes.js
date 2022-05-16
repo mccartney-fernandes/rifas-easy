@@ -3,6 +3,7 @@ import Catalog from '../pages/Catalog';
 import Dashboard from '../pages/Dashboard';
 import GenerateRifa from '../pages/GenerateRifa';
 import Report from '../pages/Report';
+import ReportUserLogin from '../pages/Report/ReportUserLogin';
 
 import Rifas from '../pages/Rifas'
 
@@ -15,6 +16,7 @@ const OtherRoutes = () => {
 				<Route path="/gerar" element={<GenerateRifa />} />				
         <Route path="/images" element={<Catalog />} />
         <Route path="/repor" element={<Report />} />
+        <Route path="/repor-user-login" element={<ReportUserLogin />} />
 			</Routes>
 		</BrowserRouter>
 	);
