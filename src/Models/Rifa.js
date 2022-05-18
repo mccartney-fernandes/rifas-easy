@@ -27,18 +27,44 @@ export async function generateRifa({ initial, final }) {
     }
 }
 
-export async function getReportRifas(args, level, email) {
+const agruparPor = (array, propriedade) => {
+  return array.reduce((objeto, elementoAtual) => {
+    const grupo = elementoAtual[propriedade];
+    if (!objeto.hasOwnProperty(grupo)) {
+      objeto[grupo] = [];
+    }
+    objeto[grupo].push(elementoAtual);
+    return objeto;
+  }, {})
+}
+
+export async function getReportRifas(args, level, email, group = null) {
 	
 	const dbRef = ref(db)
 	let report = await get(child(dbRef, `rifas`))
 
 	const ArrayRifas = Object.keys(report.val()).map( key => ({ ...report.val()[key], id: key }))
 
+	if(args === 'sold-salesman'){
+		if(level === 'adm') {
+			if(group) {
+				const salesmanQtd = agruparPor(
+																				ArrayRifas.sort((a, b) => a.number - b.number)
+																									.filter( fic => fic.status === 'sold'), 
+																				'salesman'
+																			)
+				const objArray = Object.keys(salesmanQtd)
+																.map( key => ({ name: key, sales: salesmanQtd[key].length }))
+																.sort((a, b) => b.sales - a.sales)
+
+				return objArray
+			}
+		}		
+	}
 	
 	if(args === 'sold'){
-		if(level === 'adm') {
-			console.log(args, level, email)
-			return ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'sold')
+		if(level === 'adm') {			
+				return ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'sold')		
 		}
 
 		if(level === 'cli')	{
