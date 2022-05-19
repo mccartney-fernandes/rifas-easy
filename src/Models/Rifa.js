@@ -1,5 +1,5 @@
 import app from '../services/firebaseConfig'
-import { getDatabase, ref, push, update, child, get } from 'firebase/database'
+import { getDatabase, ref, push, update } from 'firebase/database'
 
 const db = getDatabase(app)
 
@@ -38,24 +38,21 @@ const agruparPor = (array, propriedade) => {
   }, {})
 }
 
-export async function getReportRifas(args, level, email, group = null) {
-	
-	const dbRef = ref(db)
-	let report = await get(child(dbRef, `rifas`))
-
-	const ArrayRifas = Object.keys(report.val()).map( key => ({ ...report.val()[key], id: key }))
+export async function getReportRifas(args, level, email, group = null, rifas) {
+		
+	const ArrayRifas = Object.keys(rifas).map( key => ({ ...rifas[key], id: key }))
 
 	if(args === 'sold-salesman'){
 		if(level === 'adm') {
 			if(group) {
 				const salesmanQtd = agruparPor(
-																				ArrayRifas.sort((a, b) => a.number - b.number)
-																									.filter( fic => fic.status === 'sold'), 
-																				'salesman'
-																			)
+												ArrayRifas.sort((a, b) => a.number - b.number)
+																	.filter( fic => fic.status === 'sold'), 
+												'salesman'
+											)
 				const objArray = Object.keys(salesmanQtd)
-																.map( key => ({ name: key, sales: salesmanQtd[key].length }))
-																.sort((a, b) => b.sales - a.sales)
+										.map( key => ({ name: key, sales: salesmanQtd[key].length }))
+										.sort((a, b) => b.sales - a.sales)
 
 				return objArray
 			}
@@ -64,13 +61,14 @@ export async function getReportRifas(args, level, email, group = null) {
 	
 	if(args === 'sold'){
 		if(level === 'adm') {			
-				return ArrayRifas.sort((a, b) => a.number - b.number).filter( fic => fic.status === 'sold')		
+				return ArrayRifas.sort((a, b) => a.number - b.number)
+													.filter( fic => fic.status === 'sold')		
 		}
 
 		if(level === 'cli')	{
 			const reps = ArrayRifas.sort((a, b) => a.number - b.number)
-												.filter( fic => fic.status === 'sold')
-												.filter( fi => fi.salesman === email)
+															.filter( fic => fic.status === 'sold')
+															.filter( fi => fi.salesman === email)
 			return reps
 		}			
 			

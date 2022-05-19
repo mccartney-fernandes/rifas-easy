@@ -12,12 +12,6 @@ const SalesRifaModal = ({ closeModal, rifa, salesRifa }) => {
 
 	function preSafe(e){
 		e.preventDefault()
-		// buyer: ""
-		// number: 5
-		// salesman: ""
-		// status: available / processing / sold
-		// const fistname = user.email.split('@')[0].split('.')[0]
-		// const lestname = user.email.split('@')[0].split('.')[1]
 		
 		salesRifa({ ...rifa, buyer: buyer.toUpperCase(), phone, salesman: user.email, status: 'sold' })
 

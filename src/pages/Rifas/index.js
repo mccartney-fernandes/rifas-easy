@@ -25,10 +25,21 @@ function Rifas() {
 
 	
 	const setRifaModal = (data) => {
-		sales({ ...data, status: 'processing' })
+
+		const rif = ascRifas(rifas).filter( r => r.id === data.id)[0]
+
+		if(rif.status === 'sold') {
+			user.status = 'available'
+			localStorage.setItem('@App:user', JSON.stringify(user));
+			return
+		}
+
+		console.log(user.email)
+
+		sales({ ...data, salesman: user.email, status: 'processing' })
 		user.status = 'processing'
 		localStorage.setItem('@App:user', JSON.stringify(user));
-		localStorage.setItem('@App:dataProcess', JSON.stringify({ ...data, status: 'processing' }));
+		localStorage.setItem('@App:dataProcess', JSON.stringify({ ...data, salesman: user.email, status: 'processing' }));
 		setRifa(data)
 		setOpenModal(!openModal)
   }
@@ -48,6 +59,7 @@ function Rifas() {
 	}
 
 	const closeModal = (data, isSales = false) => {
+		console.log(data)
 		user.status = 'available'
 		localStorage.setItem('@App:user', JSON.stringify(user));
 		localStorage.setItem('@App:dataProcess', JSON.stringify({ ...data, status: 'available' }));
@@ -67,12 +79,12 @@ function Rifas() {
 		}
 
 		if(Object.values(obj).length === 0){
-			return <h1> Não foram Gerados numeros </h1>
+			return <h1 style={{color: '#fff'}}> Não foram Gerados numeros </h1>
 		}else {
 			if(!!Object.keys(rifas).length){
 				return <ListRifas rifas={ascRifas(rifas)} setRifaModal={setRifaModal} />
 			}else{
-				return <h1>Carregando...</h1>
+				return <h1 style={{color: '#fff'}}>Carregando...</h1>
 			}
 		}
 	}

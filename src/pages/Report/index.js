@@ -16,7 +16,7 @@ function Report() {
 	const [qtdSold, setQtdSold] = useState([])
 	const [qtdSoldSalesman, setQtdSoldSalesman] = useState([])
 	const navigate = useNavigate()
-	const { user } = useAuth()
+	const { user, rifas } = useAuth()
 
 	const authUserAdm = useCallback(async () => {
 		const response = await userLevel(user.uid)
@@ -35,13 +35,11 @@ function Report() {
 		let response = null
 
 		if(group){
-			response = await getReportRifas(args, 'adm', user.uid, true)
-			console.log(response)
+			response = await getReportRifas(args, 'adm', user.uid, true, rifas)
+			
 		}else{
-			response = await getReportRifas(args, 'adm', user.uid)
+			response = await getReportRifas(args, 'adm', user.uid, false, rifas)
 		}
-
-		console.log(response)
 
 		if(args === 'available'){
 			setQtdSold([])

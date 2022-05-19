@@ -11,10 +11,10 @@ function ReportUserLogin() {
 	const [qtdAvailable, setQtdAvailable] = useState({})
 	const [qtdSold, setQtdSold] = useState([])
 
-	const { user } = useAuth()
+	const { user, rifas } = useAuth()
 	
 	async function getReport(args) {
-		const response = await getReportRifas(args, 'cli', user.email)
+		const response = await getReportRifas(args, 'cli', user.email, false, rifas)
 		if(args === 'available'){
 			setQtdSold([])
 			setQtdAvailable(response)

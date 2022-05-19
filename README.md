@@ -22,6 +22,7 @@ Esse projeto visa ajudar grupos de Jovens de Igrejas, que querem alcançar um ob
 - Relatório de Rifas Vendidas pelo usuario: tabela(numero da rifa, nome do comprador, telefone do comprador)
 - Relatóro quantitativo de rifas Vendidas e Disponivel por todos os usuarios
 - Relatóro quantitativo de rifas Vendidas e Disponivel
+- Relatóro quantidade de rifas vendidas por usuario
 - Slider do produto rifado
 
 #### Future
